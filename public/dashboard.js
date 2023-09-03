@@ -62,11 +62,11 @@ barChart.render();
 var areaChartOptions = {
   series: [
     {
-      name: "Purchase Orders",
+      name: "Product Statistics",
       data: [31, 40, 28, 51, 42, 109, 100],
     },
     {
-      name: "Sales Orders",
+      name: "Product Graphs",
       data: [11, 32, 45, 32, 34, 52, 41],
     },
   ],
@@ -91,13 +91,13 @@ var areaChartOptions = {
   yaxis: [
     {
       title: {
-        text: "Purchase Orders",
+        text: "Product Statistics",
       },
     },
     {
       opposite: true,
       title: {
-        text: "Sales Orders",
+        text: "Product Graphs",
       },
     },
   ],
@@ -116,25 +116,6 @@ areaChart.render();
 /** For Registration */
 
 var registrationPopup = document.getElementById("registration-popup");
-
-// function openRegistrationPopup() {
-//   registrationPopup.style.display = "block";
-// }
-
-// function closeRegistrationPopup() {
-//   registrationPopup.style.display = "none";
-// }
-
-// var registrationForm = document.getElementById("registration-form");
-
-// registrationForm.addEventListener("submit", function (e) {
-//   e.preventDefault();
-//   var name = document.getElementById("name").value;
-//   var email = document.getElementById("email").value;
-//   var password = document.getElementById("password").value;
-//   registrationForm.reset();
-//   closeRegistrationPopup();
-// });
 
 /** For Login */
 

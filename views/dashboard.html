@@ -21,14 +21,6 @@
         <div class="menu-icon" onclick="openSidebar()">
           <span class="material-icons-outlined">menu</span>
         </div>
-        <div class="header-left">
-          <span class="material-icons-outlined">search</span>
-        </div>
-        <div class="header-right">
-          <span class="material-icons-outlined">notifications</span>
-          <span class="material-icons-outlined">email</span>
-          <span class="material-icons-outlined">account_circle</span>
-        </div>
       </header>
       <aside id="sidebar">
         <div class="sidebar-title">
@@ -51,7 +43,7 @@
           </li>
           <li class="sidebar-list-item">
             <a href="/registerForm" onclick="openRegistrationPopup()">
-              <span class="material-icons-outlined"></span> Register
+              <span class="material-icons-outlined"></span>Add Admin
             </a>
           </li>
           <li class="sidebar-list-item">
@@ -61,17 +53,17 @@
           </li>
 
           <li class="sidebar-list-item">
-            <a href="/userdetails" id="fetchDataButton" onclick="fetchUserData()">
+            <a href="/user/getusers" id="fetchDataButton">
               <span class="material-icons-outlined"></span> User Details
             </a>
           </li>
           <li class="sidebar-list-item">
-            <a onclick="handleChat()" target="_blank" id="chatbot">
+            <a onclick="handleChat()" id="chatbot">
               <span class="material-icons-outlined"></span> Chat
             </a>
           </li>
           <li class="sidebar-list-item">
-            <a href="/buy" target="_blank">
+            <a href="/buy">
               <span class="material-icons-outlined"></span> Stripe Payment 
             </a>
           </li>
@@ -88,7 +80,7 @@
           </div>
 
           <div class="charts-card">
-            <p class="chart-title">Purchase and Sales Orders</p> 
+            <p class="chart-title">Statistics and Graphs</p> 
             <div id="area-chart"></div>
           </div>
         </div>

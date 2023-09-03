@@ -1,13 +1,17 @@
 const User = require("../models/userModel");
 
-exports.getPosts = (req, res, next) => {
+exports.getUsers = (req, res, next) => {
 
     User.find()
     .then((users) => {
-        res.status(200).json({
-          message: "Users fetched successfully",
-          posts: users,
-        });
+        // res.status(200).json({
+        //   message: "Users fetched successfully",
+        //   posts: users,
+        // });
+        res.render("userDetails",{
+          title: 'User Details',
+          users:users
+        })
       })
     .catch((err) => {
         if (!err.statusCode) {
@@ -15,10 +19,9 @@ exports.getPosts = (req, res, next) => {
         }
         next(err);
       });
-  
 };
 
-exports.createPost = (req, res, next) => {
+exports.createUser = (req, res, next) => {
   const name = req.body.name;
   const email = req.body.email;
   const password = req.body.password;
@@ -27,7 +30,6 @@ exports.createPost = (req, res, next) => {
     name: name,
     email: email,
     password: password,
-    city: city
   });
   user
     .save()
@@ -37,7 +39,7 @@ exports.createPost = (req, res, next) => {
       //   message: "User Created Successfully",
         
       // });
-      res.redirect('http://localhost:3000');
+      res.redirect('/');
     })
     .catch((err) => {
       if (!err.statusCode) {
@@ -47,23 +49,17 @@ exports.createPost = (req, res, next) => {
     });
 };
 
-exports.updatePost = (req, res, next) => {
+exports.getSingleUser =  (req, res, next) => {
   const userId = req.params.userId;
-  console.log(userId);
-  const name = req.body.name;
-  const email = req.body.email;
-  const password = req.body.password;
-  const city = req.body.city;
   User.findById(userId)
     .then((user) => {
-      user.name = name;
-      user.email = email;
-      user.password = password;
-      user.city = city;
-      return user.save();
-    })
-    .then((result) => {
-      res.status(200).json({ message: "User Updated", user: result });
+      if (!user) {
+        res.redirect('/')
+      }
+      res.render("edit_users",{
+        title: 'Edit User',
+        user: user
+      })
     })
     .catch((err) => {
       if (!err.statusCode) {
@@ -73,19 +69,38 @@ exports.updatePost = (req, res, next) => {
     });
 };
 
-exports.deletePost = (req, res, next) => {
+exports.updateUser = (req, res, next) => {
   const userId = req.params.userId;
-  User.findById(userId)
-    .then((user) => {
-      return User.findByIdAndRemove(userId);
-    })
+  const updateData = {
+    name: req.body.name,
+    email: req.body.email,
+  };
+
+  User.findByIdAndUpdate(userId, updateData)
     .then((result) => {
-      res.status(200).json({ message: "Post Deleted" });
-    })
-    .catch((err) => {
-      if (!err.statusCode) {
-        err.statusCode = 500;
+      if (!result) {
+        res.status(404).json({ message: 'User not found' });
+      } else {
+        res.redirect('/');
       }
-      next(err);
+    })
+    .catch((error) => {
+      res.status(500).json({ message: error.message });
     });
 };
+
+exports.deleteUser = (req, res, next) => {
+  const userId = req.params.userId;
+  User.findByIdAndRemove(userId)
+    .then((result) => {
+      if (!result) {
+        res.status(404).json({ message: 'User not found' });
+      } else {
+        res.redirect('/');
+      }
+    })
+    .catch((error) => {
+      res.status(500).json({ message: error.message });
+    });
+};
+

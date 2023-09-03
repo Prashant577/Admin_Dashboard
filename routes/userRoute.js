@@ -4,18 +4,20 @@ const usercontroller = require('../controllers/userController');
 
 const router = express.Router();
 
-//GET /feed/posts
-router.get("/getusers", usercontroller.getPosts);
+//GET /user/getusers
+router.get("/getusers", usercontroller.getUsers);
 
-//POST /feed/post
-router.post("/createuser", usercontroller.createPost
+//POST /user/createuser
+router.post("/createuser", usercontroller.createUser);
 
-);
-//UPDATE SINGLE POST
-router.put("/user/:userId", usercontroller.updatePost);
+//GET SINGLE USER /user/edit/:userId
+router.get("/edit/:userId",usercontroller.getSingleUser);
+
+//UPDATE SINGLE USER /user/update/:userId
+router.post("/update/:userId", usercontroller.updateUser);
 
 
-//DELETE SINGLE POST
-router.delete('/user/:userId', usercontroller.deletePost)
+//DELETE SINGLE USER
+router.get('/delete/:userId', usercontroller.deleteUser)
 
 module.exports = router;

@@ -1,3 +1,4 @@
+require('dotenv').config()
 const http = require("http");
 const path = require('path')
 const express = require("express");
@@ -10,8 +11,14 @@ const paymentRoute = require("./routes/paymentRoute");
 const adminRoute = require('./routes/adminRoute')
 const dashboardRoute = require('./routes/dashboardRoute')
 const userRoute = require('./routes/userRoute');
+const userRegistrationFormRoute = require('./routes/userRegRoute');
+const adminRegistrationFormRoute = require('./routes/adminRegRoute');
 
 const app = express();
+
+//Here we are using templating html using EJS
+app.set('view engine', 'ejs');
+
 const server = http.createServer(app);
 const io = new Server(server);
 
@@ -22,28 +29,28 @@ app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// Enable CORS for all routes
+/** Enable CORS for all routes */
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 });
-
+ /** Routes Prefix */
 app.use("/", dashboardRoute);
 app.use('/admin', adminRoute);
 app.use('/user',userRoute);
 app.use("/chat", chatRoute);
 app.use("/", paymentRoute);
-app.get('/registerForm',(req,res,next) => {
-    res.sendFile(path.join(__dirname, 'views', 'registrationForm.html'))
-})
-app.get('/userreg', (req, res, next) => {
-  res.sendFile(path.join(__dirname, 'views', 'userRegister.html'))
-})
-app.get('/userdetails', (req, res, next) => {
-  res.sendFile(path.join(__dirname, 'views', 'userDetails.html'))
-})
+// app.get('/registerForm',(req,res,next) => {
+//     res.sendFile(path.join(__dirname, 'views', 'registrationForm.html'))
+// })
+// app.get('/userreg', (req, res, next) => {
+//   res.sendFile(path.join(__dirname, 'views', 'userRegister.html'))
+// })
+app.use('/',adminRegistrationFormRoute);
+app.use('/', userRegistrationFormRoute);
+
 
 /** ERROR HANDLING */
 app.use((error, req, res, next) => {

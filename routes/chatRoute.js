@@ -9,7 +9,7 @@ router.get('/', (req, res, next) =>{
      res.cookie("userToken",JSON.parse(req.query.data).token);
      res.cookie("userPriviledge",JSON.parse(req.query.data).priveledge);
      // res.cookie("us")
-     res.sendFile(path.join(__dirname, '../', 'index.html'));
+     res.sendFile(path.join(__dirname, '../','views', 'index.html'));
 })
 
 module.exports = router;
