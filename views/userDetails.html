@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Details</title>
+    <style>
+        #userTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+/* Style for table header row */
+#userTable thead {
+  background-color: #333;
+  color: #fff;
+}
+
+/* Style for table header cells */
+#userTable th {
+  padding: 10px;
+  text-align: left;
+}
+
+/* Style for table body rows */
+#userTable tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Style for table body cells */
+#userTable td {
+  padding: 10px;
+}
+
+/* Add some hover effect to table rows */
+#userTable tbody tr:hover {
+  background-color: #ddd;
+}
+    </style>
+</head>
+<body>
+    <h2><a href="http://localhost:3000">Go To Dashboard</a></h2>
+    <h1>USER DETAILS</h1>
+    <table id="userTable">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>City</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+        </tbody>
+      </table>
+      <script src="/userDetails.js"></script>
+</body>
+</html>

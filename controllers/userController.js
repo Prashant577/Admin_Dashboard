@@ -33,10 +33,11 @@ exports.createPost = (req, res, next) => {
     .save()
     .then((result) => {
       console.log(result);
-      res.status(201).json({
-        message: "User Created Successfully",
-        user: result,
-      });
+      // res.status(201).json({
+      //   message: "User Created Successfully",
+        
+      // });
+      res.redirect('http://localhost:3000');
     })
     .catch((err) => {
       if (!err.statusCode) {
