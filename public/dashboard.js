@@ -169,10 +169,10 @@ loginForm.addEventListener("submit", function (e) {
     }),
   });
   response
-    .then(async (res) => {
+    .then( (res) => {
       if (res) {
-        console.log(res.json());
-        return res.json();
+        // console.log(res.json());
+        return  res.json();
       }
     })
     .then((data) => {
@@ -189,6 +189,9 @@ loginForm.addEventListener("submit", function (e) {
 
   loginForm.reset();
   closePopup();
+  setTimeout(function(){
+    window.location.reload();
+  }, 2000)
 });
 
 /** Chat Function */
@@ -203,4 +206,15 @@ function handleChat() {
 
   // location.assign("http://localhost:3000/chat");
   location.href = "http://localhost:3000/chat?data=" + data;
+}
+
+/** Handle Chat Button Visibility */
+const handleChatBtn = sessionStorage.getItem("data");
+const result = JSON.parse(handleChatBtn);
+console.log('result',result);
+const chatBtn = document.getElementById('chatbot');
+if(result == null){ 
+  chatBtn.style.display = 'none'
+}else{
+  chatBtn.style.display = 'block'
 }
