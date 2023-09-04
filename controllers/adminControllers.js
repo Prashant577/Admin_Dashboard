@@ -30,7 +30,7 @@ exports.signUp = (req,res, next) => {
         //     message:'New Admin Created',
         //     userId: result
         // })
-        res.redirect('http://localhost:3000');
+        res.redirect('/');
     })
     .catch(err => {
         console.log(err);
